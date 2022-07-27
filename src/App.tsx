@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Lottie from 'react-lottie';
+import animationBefore from './assets/16940-a-boy-with-spots-on-his-face-un-chico-con-manchas-en-su-cara.json'
+import animationAfter from './assets/16936-chico-enfermo-ill-boy.json'
 
-function App() {
+
+export const App = () => {
+
+  const [animation, setAnimation] = useState<any>(animationBefore)
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animation,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice'
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div style={{width: '400px', height: '400px'}} onMouseEnter={() => {setAnimation(animationAfter)}} onMouseLeave={() => {setAnimation(animationBefore)}}>
+        <Lottie options={defaultOptions}
+          height={400}
+          width={400}
+        />
+      </div>
     </div>
-  );
+  )
 }
-
-export default App;
